@@ -1,0 +1,29 @@
+from cs50 import get_string  
+from cs50 import get_float  # Função para capturar números decimais (flutuantes)
+
+
+cash = get_float("Moedas: ")
+
+while True:
+    
+    # Verifica se o valor inserido é maior ou igual a 0
+    if cash >= 0:
+
+        # Converte o valor inserido (em dólares) para centavos, multiplicando por 100 porque 1 dolar tem 100 centavos 
+        cents = int(cash * 100)
+        # Calcula quantas moedas de 25 centavos são necessárias para 100
+        c25 = int(cents / 25)
+        # Calcula quantas moedas de 10 centavos são necessárias para 100, subtraindo o valor já utilizado pelas moedas de 25 centavos
+        c10 = int((cents - (c25 * 25)) / 10)
+        # Calcula quantas moedas de 5 centavos são necessáriaspara 100, subtraindo o valor das moedas de 25 e 10 centavos
+        c5 = int((cents - (c25 * 25) - (c10 * 10)) / 5)
+        # Calcula quantas moedas de 1 centavo são necessárias para 100, subtraindo o valor das moedas de 25, 10 e 5 centavos
+        c1 = int(cents - (c25 * 25) - (c10 * 10) - (c5 * 5))
+        # Exibe o total de moedas necessárias (soma de todas as moedas: 25¢, 10¢, 5¢ e 1¢)
+        print(c25 + c10 + c5 + c1)
+
+        break
+    
+    else:
+        # Caso o valor inserido seja negativo, solicita uma nova entrada a entrada ao usuário
+        cash = get_float("Moedas: ")
